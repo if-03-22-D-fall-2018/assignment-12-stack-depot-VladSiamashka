@@ -46,12 +46,22 @@ int get_count(Stack stack) {
 }
 
 void* pop_stack(Stack stack) {
-  //if (get_count(stack)==0) {
-    //return 0;
-  //}
-  
+
+  if (get_count(stack) == 0){
+    return 0;
+  }
+  Node tmp = stack->head;
+  stack->count--;
+  stack->head = stack->head->next;
+  void* data = tmp->data;
+  sfree(tmp);
+  return data;
+
 }
 
 void* peek_stack(Stack stack) {
-
+  if (get_count(stack) == 0){
+    return 0;
+  }
+  return stack->head->data;
 }
